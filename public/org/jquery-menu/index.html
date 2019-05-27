@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> jQuery Menu </title>
+        <link rel="canonical" href="http://sizeof.cat/jquery/menu/">
+        <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+    </head>
+
+<body class="theme-base-0g">
+
+    <div class="wrap">
+        <div class="masthead">
+            <div class="container">
+                <h3 class="masthead-title">
+                    <a href="http://sizeof.cat/" title="Home">Home</a> &raquo; 
+                    <a href="http://sizeof.cat/jquery" title="jQuery plugins">jQuery</a> &raquo;
+                    jQuery Menu
+                </h3>
+            </div>
+        </div>
+        <div class="container content">
+            <h1 class="post-title">jQuery Menu</h1>
+            <section id="main">
+                <p>This <a href="http://www.jquery.com">jQuery</a> plugin makes it easy to add right-click context menu functionality to any web application. A context menu can help make a web application feel even more like a native application.</p>
+
+<p></p>
+
+<ul>
+<li>Supports keyboard control.</li>
+<li>Always stays in viewport (menus never open outside of the visible area).</li>
+<li>Supports infinite amount of sub-menus.</li>
+<li>Enable disable items or entire menus.</li>
+<li>Add and remove items and let the menu refresh.</li>
+<li>Add separators between groups of similar items.</li>
+<li>Show non-menu items like images or forms.</li>
+<li>Supports right- or left-click control.</li>
+<li>Multiple elements can share menus.</li>
+<li>Menus automatically resize based on menu contents.</li>
+<li>Build menus with HTML or pass in a JavaScript object.</li>
+<li>Customizable callbacks for each menu (<code>on_load</code>, <code>on_show</code>, <code>on_hide</code>, and <code>on_select</code>).</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Language</td>
+<td>Javascript</td>
+</tr>
+
+<tr>
+<td>License</td>
+<td><a href="https://github.com/sizeofcat/jquery-menu/blob/master/LICENSE">MIT</a></td>
+</tr>
+
+<tr>
+<td>Version</td>
+<td>2.0.0</td>
+</tr>
+
+<tr>
+<td>Release date</td>
+<td>January 3, 2017</td>
+</tr>
+
+<tr>
+<td>Download</td>
+<td><a href="https://github.com/sizeofcat/jquery-menu/archive/master.zip">zip archive</a></td>
+</tr>
+
+<tr>
+<td>Source</td>
+<td><code>git clone https://github.com/sizeofcat/jquery-menu.git</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="setup">Setup</h2>
+
+<p>First you need to include the jQuery library, since Menu is a plugin. You can download it from the jQuery website or link it directly from the Google CDN.</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+<p>Secondly, you need to include the jQuery Menu javascript and the css file into your page. You can do it by adding the code below to your page.</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;js/jquery-menu.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;css/jquery-menu.css&quot;</span> <span class="p">/&gt;</span>
+</code></pre></div>
+
+
+<p>Next, you implement the structure for the menu. This can be done two ways: either pure HTML using lists and divs OR you can pass a JavaScript object to the <em>catMenu()</em> function. I&rsquo;ll present the first method here.</p>
+
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;simpleCallbackMenu&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem1&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item1&quot;</span><span class="p">&gt;</span>Menu Item 1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item2&quot;</span><span class="p">&gt;</span>Menu Item 2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3&quot;</span><span class="p">&gt;</span>Menu Item 3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.1&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.1&quot;</span><span class="p">&gt;</span>Menu Item 3.1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.2&quot;</span><span class="p">&gt;</span>Menu Item 3.2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.3&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.3&quot;</span><span class="p">&gt;</span>Menu Item 3.3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.3.1&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.3.1&quot;</span><span class="p">&gt;</span>Menu Item 3.3.1<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.3.2&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.3.2&quot;</span><span class="p">&gt;</span>Menu Item 3.3.2<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.3.3&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.3.3&quot;</span><span class="p">&gt;</span>Menu Item 3.3.3<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+                <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.3.4&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.3.4&quot;</span><span class="p">&gt;</span>Menu Item 3.3.4<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem3.4&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item3.4&quot;</span><span class="p">&gt;</span>Menu Item 3.4<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;MenuItem4&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;separator&quot;</span><span class="p">&gt;&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;#Item4&quot;</span><span class="p">&gt;</span>Menu Item 4<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+
+<p>As the last step, you trigger the <em>catMenu()</em> function on the element you just created. In this case, we trigger the menu on the element with the id <em>simpleCallback</em> and we build the menu from the element with the id <em>simpleCallbackMenu</em>.</p>
+
+<p><div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span></span><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#simpleCallback&#39;</span><span class="p">).</span><span class="nx">catMenu</span><span class="p">({</span>
+    <span class="nx">menu</span><span class="o">:</span> <span class="s1">&#39;simpleCallbackMenu&#39;</span>
+<span class="p">});</span>
+</code></pre></div>
+</p>
+
+<h2 id="settings">Settings</h2>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>menu</td>
+<td></td>
+<td>Id of the element containing the menu DOM structure or an array with the menu items.</td>
+</tr>
+
+<tr>
+<td>mouse_button</td>
+<td>&lsquo;right&rsquo;</td>
+<td>Sets which button causes the menu to appear, can be <em>left</em> or <em>right</em>.</td>
+</tr>
+
+<tr>
+<td>min_width</td>
+<td>120</td>
+<td>Minimal width of the menu in pixels.</td>
+</tr>
+
+<tr>
+<td>max_width</td>
+<td>0</td>
+<td>Maximum width of the menu, 0 means no maximum.</td>
+</tr>
+
+<tr>
+<td>delay</td>
+<td>500</td>
+<td>Delay in miliseconds before the sub-menu vanishes.</td>
+</tr>
+
+<tr>
+<td>keyboard</td>
+<td>true</td>
+<td>Enables or disables the keyboard control.</td>
+</tr>
+
+<tr>
+<td>hover_intent</td>
+<td>true</td>
+<td>Should use the hoverIntent jQuery plugin.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="callbacks">Callbacks</h2>
+
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>on_select()</td>
+<td>Function to be called when a user clicks on a menu item.</td>
+</tr>
+
+<tr>
+<td>on_load()</td>
+<td>Function to be called when the menu is done building.</td>
+</tr>
+
+<tr>
+<td>on_show()</td>
+<td>Function to be called when the menu is shown.</td>
+</tr>
+
+<tr>
+<td>on_hide()</td>
+<td>Function to be called when the menu is hidden.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="demo">Demo</h2>
+
+<div id="callbackmenu">
+    <ul>
+        <li id="MenuItem1"><a href="#Item1">Menu Item 1</a></li>
+        <li class="disabled" id="MenuItem2"><a href="#Item2">Menu Item 2</a></li>
+        <li id="MenuItem3"><a href="#Item3">Menu Item 3</a>
+            <ul>
+                <li id="MenuItem3.1"><a href="#Item3.1">Menu Item 3.1</a></li>
+                <li id="MenuItem3.2"><a href="#Item3.2">Menu Item 3.2</a></li>
+                <li id="MenuItem3.3"><a href="#Item3.3">Menu Item 3.3</a>
+                    <ul>
+                        <li id="MenuItem3.3.1"><a href="#Item3.3.1">Menu Item 3.3.1</a></li>
+                        <li id="MenuItem3.3.2"><a href="#Item3.3.2">Menu Item 3.3.2</a></li>
+                        <li id="MenuItem3.3.3"><a href="#Item3.3.3">Menu Item 3.3.3</a></li>
+                        <li id="MenuItem3.3.4"><a href="#Item3.3.4">Menu Item 3.3.4</a></li>
+                    </ul>
+                </li>
+                <li id="MenuItem3.4"><a href="#Item3.4">Menu Item 3.4</a></li>
+            </ul>
+        </li>
+        <li id="MenuItem4" class="separator"><a href="#Item4">Menu Item 4</a></li>
+    </ul>
+</div>
+
+<div class="callback1">Right Click Me</div>
+
+<div class="callback2">Left Click Me</div>
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery.hoverintent.js"></script>
+<script src="js/jquery-menu.js"></script>
+<script>
+var linkElement = document.createElement("link");
+linkElement.rel = "stylesheet";
+linkElement.href = "css/jquery-menu.css";
+document.head.appendChild(linkElement);
+$(document).ready(function() {
+    $('.callback1').catMenu({
+        menu: 'callbackmenu',
+        on_select: function(e) {
+            alert("You clicked on a menu item!\n\nThe item's action is: " + e.action + "\nThe item's id is: " + e.id);
+        }
+    });
+    $('.callback2').catMenu({
+        menu: 'callbackmenu',
+        mouse_button: 'left',
+        on_select: function(e) {
+            alert("You clicked on a menu item!\n\nThe item's action is: " + e.action + "\nThe item's id is: " + e.id);
+        }
+    });
+});
+</script>
+            </section>
+        </div>
+    </div>
+    <br />
+            <div class="container content">
+            <footer>
+                <div>
+                    <p class="right credit">&copy;  <a href="http://sizeof.cat/">sizeof.cat</a> - powered by <a href="https://gohugo.io/">Hugo</a> and hosted via <a href="http://pages.github.com/">GitHub Pages</a>. <a href="http://sizeof.cat/index.xml">RSS</a></p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
+

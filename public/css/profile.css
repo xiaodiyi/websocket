@@ -1,0 +1,9 @@
+.open.city-picker-span{
+        border: none;
+    }
+    .city-selector{
+        padding: 8px 15px;
+    }
+    .city-picker-dropdown{
+        padding: 8px 0 0 15px;
+    }
